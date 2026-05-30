@@ -1,10 +1,23 @@
+import { useState } from "react";
 import PostsLayout from "./layouts/posts";
+import MainHeader from "./components/MainHeader";
 
 function App() {
+    const [modelIsOpen, setModelIsOpen] = useState(false);
+
+    function handleToggleModal() {
+        setModelIsOpen((prevmodelIsOpen) => !prevmodelIsOpen);
+    }
+
   return <>
-  <main>
-    <PostsLayout />
-  </main>
+    <MainHeader onCreatePost={handleToggleModal} />
+
+    <main>
+      <PostsLayout
+      modelIsOpen={modelIsOpen}
+      onCloseModel={handleToggleModal}
+       />
+    </main>
   </>
 }
 
